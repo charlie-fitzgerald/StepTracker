@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">StepTracker</string>
+    
+    <!-- Navigation -->
+    <string name="nav_home">Home</string>
+    <string name="nav_walk">Walk</string>
+    <string name="nav_history">History</string>
+    <string name="nav_goals">Goals</string>
+    <string name="nav_settings">Settings</string>
+    
+    <!-- Home Screen -->
+    <string name="today_steps">Today\'s Steps</string>
+    <string name="weekly_average">Weekly Average</string>
+    <string name="monthly_total">Monthly Total</string>
+    <string name="total_steps">Total Steps</string>
+    <string name="steps">steps</string>
+    <string name="miles">miles</string>
+    <string name="kilometers">km</string>
+    <string name="calories">calories</string>
+    
+    <!-- Walk Screen -->
+    <string name="start_walk">Start Walk</string>
+    <string name="stop_walk">Stop Walk</string>
+    <string name="pause_walk">Pause</string>
+    <string name="resume_walk">Resume</string>
+    <string name="walk_duration">Duration</string>
+    <string name="walk_distance">Distance</string>
+    <string name="walk_pace">Pace</string>
+    <string name="walk_elevation">Elevation</string>
+    <string name="max_elevation">Max Elevation</string>
+    <string name="elevation_gain">Elevation Gain</string>
+    
+    <!-- Walk Modes -->
+    <string name="auto_route">Auto Route</string>
+    <string name="draw_route">Draw Route</string>
+    <string name="just_walk">Just Walk</string>
+    <string name="auto_route_description">Generate a walkable loop of your desired distance</string>
+    <string name="draw_route_description">Sketch your route on the map</string>
+    <string name="just_walk_description">Start tracking with no predefined route</string>
+    
+    <!-- Settings -->
+    <string name="units">Units</string>
+    <string name="imperial">Imperial</string>
+    <string name="metric">Metric</string>
+    <string name="theme">Theme</string>
+    <string name="light">Light</string>
+    <string name="dark">Dark</string>
+    <string name="system">System</string>
+    <string name="notifications">Notifications</string>
+    <string name="milestone_notifications">Milestone Notifications</string>
+    <string name="milestone_distance">Milestone Distance</string>
+    <string name="weather">Weather</string>
+    <string name="temperature_unit">Temperature Unit</string>
+    <string name="fahrenheit">Fahrenheit</string>
+    <string name="celsius">Celsius</string>
+    
+    <!-- Permissions -->
+    <string name="location_permission_title">Location Permission Required</string>
+    <string name="location_permission_message">This app needs location access to track your walks and show your position on the map.</string>
+    <string name="activity_permission_title">Activity Recognition Permission Required</string>
+    <string name="activity_permission_message">This app needs activity recognition to count your steps accurately.</string>
+    <string name="grant_permission">Grant Permission</string>
+    <string name="cancel">Cancel</string>
+    
+    <!-- Weather -->
+    <string name="weather_loading">Loading weather…</string>
+    <string name="weather_error">Unable to load weather</string>
+    <string name="feels_like">Feels like</string>
+    <string name="humidity">Humidity</string>
+    <string name="wind_speed">Wind Speed</string>
+    
+    <!-- History -->
+    <string name="no_walks_yet">No walks recorded yet</string>
+    <string name="start_your_first_walk">Start your first walk to see your history here</string>
+    <string name="walk_date">Walk Date</string>
+    <string name="walk_time">Walk Time</string>
+    <string name="average_pace">Average Pace</string>
+    <string name="save_route">Save Route</string>
+    <string name="route_name">Route Name</string>
+    <string name="enter_route_name">Enter route name</string>
+    <string name="saved_routes">Saved Routes</string>
+    <string name="no_saved_routes">No saved routes yet</string>
+    
+    <!-- Goals -->
+    <string name="daily_goal">Daily Goal</string>
+    <string name="weekly_goal">Weekly Goal</string>
+    <string name="set_goal">Set Goal</string>
+    <string name="goal_progress">Goal Progress</string>
+    <string name="goal_achieved">Goal Achieved!</string>
+    <string name="steps_remaining">steps remaining</string>
+    
+    <!-- Common -->
+    <string name="ok">OK</string>
+    <string name="save">Save</string>
+    <string name="delete">Delete</string>
+    <string name="edit">Edit</string>
+    <string name="close">Close</string>
+    <string name="loading">Loading…</string>
+    <string name="error">Error</string>
+    <string name="retry">Retry</string>
+    
+    <!-- Time formats -->
+    <string name="time_format">%02d:%02d:%02d</string>
+    <string name="date_format">MMM dd, yyyy</string>
+    <string name="time_format_short">%02d:%02d</string>
+</resources> 
