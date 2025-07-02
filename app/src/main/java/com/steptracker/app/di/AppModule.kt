@@ -5,6 +5,10 @@ import androidx.room.Room
 import com.steptracker.app.data.AppDatabase
 import com.steptracker.app.data.api.WeatherApi
 import com.steptracker.app.data.preferences.UserPreferences
+import com.steptracker.app.auth.OAuthManager
+import com.steptracker.app.security.SecurityManager
+import com.steptracker.app.security.SecurePreferences
+import com.steptracker.app.security.NetworkSecurityConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -66,10 +70,49 @@ object AppModule {
     
     @Provides
     @Singleton
-    fun provideWeatherApi(okHttpClient: OkHttpClient): WeatherApi {
+    fun provideSecurityManager(
+        @ApplicationContext context: Context
+    ): SecurityManager {
+        return SecurityManager(context)
+    }
+    
+    @Provides
+    @Singleton
+    fun provideSecurePreferences(
+        @ApplicationContext context: Context,
+        securityManager: SecurityManager
+    ): SecurePreferences {
+        return SecurePreferences(context, securityManager)
+    }
+    
+    @Provides
+    @Singleton
+    fun provideOAuthManager(
+        @ApplicationContext context: Context
+    ): OAuthManager {
+        return OAuthManager(context)
+    }
+    
+    @Provides
+    @Singleton
+    fun provideNetworkSecurityConfig(): NetworkSecurityConfig {
+        return NetworkSecurityConfig()
+    }
+    
+    @Provides
+    @Singleton
+    fun provideSecureOkHttpClient(
+        networkSecurityConfig: NetworkSecurityConfig
+    ): OkHttpClient {
+        return networkSecurityConfig.createSecureOkHttpClient()
+    }
+    
+    @Provides
+    @Singleton
+    fun provideWeatherApi(secureOkHttpClient: OkHttpClient): WeatherApi {
         return Retrofit.Builder()
             .baseUrl("https://api.openweathermap.org/data/2.5/")
-            .client(okHttpClient)
+            .client(secureOkHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(WeatherApi::class.java)

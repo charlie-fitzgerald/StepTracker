@@ -88,4 +88,25 @@ lint/tmp/
 *.hprof
 
 # API Keys (keep these out of version control)
-local.properties 
+local.properties
+
+# Security and API Keys
+app/src/main/res/values/secrets.xml
+app/src/main/res/values/keys.xml
+*.keystore
+*.jks
+google-services.json
+google-services.json.bak
+
+# Environment files
+.env
+.env.local
+.env.production
+.env.development
+
+# Secure preferences and encrypted data
+app/src/main/assets/secure/
+app/src/main/res/raw/keys/
+
+# Ignore Android API keys file
+app/src/main/res/values/api_keys.xml 

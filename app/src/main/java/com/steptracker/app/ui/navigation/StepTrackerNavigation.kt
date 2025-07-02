@@ -19,6 +19,7 @@ import com.steptracker.app.R
 import com.steptracker.app.ui.screens.GoalsScreen
 import com.steptracker.app.ui.screens.HistoryScreen
 import com.steptracker.app.ui.screens.HomeScreen
+import com.steptracker.app.ui.screens.LoginScreen
 import com.steptracker.app.ui.screens.SettingsScreen
 import com.steptracker.app.ui.screens.WalkScreen
 
@@ -30,65 +31,83 @@ fun StepTrackerNavigation(
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
 
-    Scaffold(
-        bottomBar = {
-            NavigationBar {
-                val screens = listOf(
-                    Screen.Home to Icons.Filled.Home,
-                    Screen.Walk to Icons.Filled.DirectionsWalk,
-                    Screen.History to Icons.Filled.History,
-                    Screen.Goals to Icons.Filled.Flag,
-                    Screen.Settings to Icons.Filled.Settings
-                )
+    // Check if we're on the login screen
+    val isOnLoginScreen = currentDestination?.route == Screen.Login.route
 
-                screens.forEach { (screen, icon) ->
-                    NavigationBarItem(
-                        icon = { Icon(icon, contentDescription = null) },
-                        label = {
-                            Text(
-                                text = when (screen) {
-                                    Screen.Home -> stringResource(R.string.nav_home)
-                                    Screen.Walk -> stringResource(R.string.nav_walk)
-                                    Screen.History -> stringResource(R.string.nav_history)
-                                    Screen.Goals -> stringResource(R.string.nav_goals)
-                                    Screen.Settings -> stringResource(R.string.nav_settings)
-                                }
-                            )
-                        },
-                        selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
-                        onClick = {
-                            navController.navigate(screen.route) {
-                                popUpTo(navController.graph.findStartDestination().id) {
-                                    saveState = true
-                                }
-                                launchSingleTop = true
-                                restoreState = true
-                            }
-                        }
+    if (!isOnLoginScreen) {
+        Scaffold(
+            bottomBar = {
+                NavigationBar {
+                    val screens = listOf(
+                        Screen.Home to Icons.Filled.Home,
+                        Screen.Walk to Icons.Filled.DirectionsWalk,
+                        Screen.History to Icons.Filled.History,
+                        Screen.Goals to Icons.Filled.Flag,
+                        Screen.Settings to Icons.Filled.Settings
                     )
+
+                    screens.forEach { (screen, icon) ->
+                        NavigationBarItem(
+                            icon = { Icon(icon, contentDescription = null) },
+                            label = {
+                                Text(
+                                    text = when (screen) {
+                                        Screen.Home -> stringResource(R.string.nav_home)
+                                        Screen.Walk -> stringResource(R.string.nav_walk)
+                                        Screen.History -> stringResource(R.string.nav_history)
+                                        Screen.Goals -> stringResource(R.string.nav_goals)
+                                        Screen.Settings -> stringResource(R.string.nav_settings)
+                                    }
+                                )
+                            },
+                            selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
+                            onClick = {
+                                navController.navigate(screen.route) {
+                                    popUpTo(navController.graph.findStartDestination().id) {
+                                        saveState = true
+                                    }
+                                    launchSingleTop = true
+                                    restoreState = true
+                                }
+                            }
+                        )
+                    }
+                }
+            }
+        ) { innerPadding ->
+            NavHost(
+                navController = navController,
+                startDestination = Screen.Home.route,
+                modifier = Modifier.padding(innerPadding)
+            ) {
+                composable(Screen.Home.route) {
+                    HomeScreen()
+                }
+                composable(Screen.Walk.route) {
+                    WalkScreen()
+                }
+                composable(Screen.History.route) {
+                    HistoryScreen()
+                }
+                composable(Screen.Goals.route) {
+                    GoalsScreen()
+                }
+                composable(Screen.Settings.route) {
+                    SettingsScreen()
                 }
             }
         }
-    ) { innerPadding ->
+    } else {
         NavHost(
             navController = navController,
-            startDestination = Screen.Home.route,
-            modifier = Modifier.padding(innerPadding)
+            startDestination = Screen.Login.route
         ) {
-            composable(Screen.Home.route) {
-                HomeScreen()
-            }
-            composable(Screen.Walk.route) {
-                WalkScreen()
-            }
-            composable(Screen.History.route) {
-                HistoryScreen()
-            }
-            composable(Screen.Goals.route) {
-                GoalsScreen()
-            }
-            composable(Screen.Settings.route) {
-                SettingsScreen()
+            composable(Screen.Login.route) {
+                LoginScreen(
+                    onLoginSuccess = { navController.navigate(Screen.Home.route) {
+                        popUpTo(Screen.Login.route) { inclusive = true }
+                    }}
+                )
             }
         }
     }

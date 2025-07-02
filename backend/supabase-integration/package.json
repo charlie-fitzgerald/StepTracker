@@ -1,0 +1,59 @@
+{
+  "name": "steptracker-supabase",
+  "version": "1.0.0",
+  "description": "StepTracker app with Supabase backend integration",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint src/**/*.ts",
+    "lint:fix": "eslint src/**/*.ts --fix",
+    "migrate": "tsx scripts/migrate-data.ts",
+    "verify": "tsx scripts/verify-migration.ts",
+    "rollback": "tsx scripts/rollback.ts",
+    "setup": "tsx scripts/setup-supabase.ts",
+    "seed": "tsx scripts/seed-data.ts"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.38.4",
+    "dotenv": "^16.3.1",
+    "pg": "^8.11.3",
+    "typescript": "^5.2.2",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.8.10",
+    "@types/pg": "^8.10.7",
+    "@typescript-eslint/eslint-plugin": "^6.9.1",
+    "@typescript-eslint/parser": "^6.9.1",
+    "eslint": "^8.53.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.1",
+    "tsx": "^3.14.1"
+  },
+  "keywords": [
+    "steptracker",
+    "supabase",
+    "postgresql",
+    "realtime",
+    "authentication",
+    "fitness",
+    "health"
+  ],
+  "author": "StepTracker Team",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/steptracker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-org/steptracker/issues"
+  },
+  "homepage": "https://github.com/your-org/steptracker#readme"
+} 

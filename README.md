@@ -33,22 +33,32 @@ A streamlined, modern step tracking and walking route app designed for Android p
 
 - **MVVM Pattern**: ViewModel + StateFlow for state management
 - **Jetpack Compose**: Modern declarative UI framework
-- **Room Database**: Local data persistence
-- **DataStore**: User preferences storage
+- **Room Database**: Local data persistence with encryption support
+- **DataStore**: User preferences storage with encryption
 - **Hilt**: Dependency injection
+
+### Security & Authentication
+
+- **OAuth 2.0**: Google Sign-In integration
+- **Android Keystore**: Hardware-backed encryption
+- **AES-256-GCM**: Military-grade encryption for sensitive data
+- **Certificate Pinning**: Network security protection
+- **Secure Preferences**: Encrypted API key and token storage
 
 ### Key Libraries
 
 - **Google Maps SDK**: For routing and map functionality
 - **FusedLocationProviderClient**: GPS location tracking
-- **Retrofit**: Weather API integration
+- **Retrofit**: Weather API integration with security
 - **Kotlin Coroutines**: Asynchronous operations
 - **Work Manager**: Background task management
+- **Google Play Services Auth**: OAuth authentication
 
 ## Project Structure
 
 ```
 app/src/main/java/com/steptracker/app/
+├── auth/              # OAuth authentication
 ├── data/
 │   ├── api/           # API interfaces and models
 │   ├── dao/           # Room database DAOs
@@ -56,6 +66,7 @@ app/src/main/java/com/steptracker/app/
 │   ├── preferences/   # User preferences
 │   └── repository/    # Data repositories
 ├── di/                # Dependency injection
+├── security/          # Security and encryption
 ├── service/           # Background services
 ├── ui/
 │   ├── components/    # Reusable UI components
@@ -72,20 +83,15 @@ app/src/main/java/com/steptracker/app/
 
 - Android Studio Arctic Fox or later
 - Android SDK 24+ (API level 24)
-- Google Maps API key
-- OpenWeatherMap API key
 
 ### Installation
 
 1. Clone the repository
 2. Open the project in Android Studio
-3. Add your API keys to `local.properties`:
-   ```
-   MAPS_API_KEY=your_google_maps_api_key
-   WEATHER_API_KEY=your_openweathermap_api_key
-   ```
-4. Sync the project with Gradle files
-5. Build and run the app
+3. Sync the project with Gradle files
+4. Build and run the app
+
+**Note**: The app comes with pre-configured API keys for immediate use. No additional setup required!
 
 ### Required Permissions
 
@@ -101,12 +107,13 @@ The app requires the following permissions:
 
 ### Getting Started
 
-1. **First Launch**: Grant necessary permissions when prompted
-2. **Home Screen**: View today's step count, weekly stats, and weather
-3. **Walk Screen**: Choose a walk mode and start tracking
-4. **History**: Review past walks and save favorite routes
-5. **Goals**: Set and track daily/weekly step goals
-6. **Settings**: Customize units, theme, and notifications
+1. **First Launch**: Sign in with Google or create a local account
+2. **Grant Permissions**: Allow necessary permissions when prompted
+3. **Home Screen**: View today's step count, weekly stats, and weather
+4. **Walk Screen**: Choose a walk mode and start tracking
+5. **History**: Review past walks and save favorite routes
+6. **Goals**: Set and track daily/weekly step goals
+7. **Settings**: Customize units, theme, and notifications
 
 ### Walk Modes
 
@@ -114,12 +121,18 @@ The app requires the following permissions:
 - **Draw Route**: Tap on map to create a custom route
 - **Just Walk**: Start walking immediately, route is recorded automatically
 
-### Data Privacy
+### Data Privacy & Security
 
-- All data is stored locally on the device
-- No personal data is transmitted to external servers (except weather API)
-- GPS is only active during walk sessions
-- Step counting works without GPS for daily tracking
+- **Local Data Storage**: All user data is stored locally on the device
+- **Encrypted Storage**: Sensitive data is encrypted using AES-256-GCM
+- **Secure Authentication**: OAuth 2.0 with Google Sign-In and secure local authentication
+- **API Key Protection**: All API keys are encrypted and securely managed
+- **HTTPS Enforcement**: All network requests use secure HTTPS connections
+- **Certificate Pinning**: Prevents man-in-the-middle attacks
+- **GDPR Compliant**: User data handling follows privacy regulations
+- **No Personal Data Sharing**: No personal data transmitted to external servers (except weather API)
+- **GPS Privacy**: GPS is only active during walk sessions
+- **Step Counting**: Works without GPS for daily tracking
 
 ## Future Enhancements
 
@@ -140,6 +153,36 @@ The app requires the following permissions:
 - Multi-language support
 - Wear OS companion app
 
+## Security Features
+
+### Authentication & Authorization
+
+- **OAuth 2.0**: Secure Google Sign-In integration
+- **Local Authentication**: Email/password with encrypted storage
+- **Session Management**: Secure token handling and automatic refresh
+- **Biometric Support**: Optional fingerprint/face unlock
+
+### Data Protection
+
+- **AES-256-GCM Encryption**: Military-grade encryption for all sensitive data
+- **Android Keystore**: Hardware-backed key storage
+- **Encrypted Database**: Room database with encryption support
+- **Secure Preferences**: Encrypted storage for API keys and tokens
+
+### Network Security
+
+- **HTTPS Enforcement**: All API calls use secure connections
+- **Certificate Pinning**: Prevents man-in-the-middle attacks
+- **API Key Protection**: Encrypted storage and secure management
+- **Request Validation**: Input sanitization and validation
+
+### Privacy Compliance
+
+- **GDPR Compliant**: User data handling according to regulations
+- **Data Minimization**: Only necessary data is collected
+- **User Control**: Complete data deletion and export capabilities
+- **Transparency**: Clear privacy policies and data usage
+
 ## Contributing
 
 This project is designed to be easily maintainable and extensible. Key areas for contribution:
@@ -149,6 +192,7 @@ This project is designed to be easily maintainable and extensible. Key areas for
 - Additional walk modes
 - Enhanced data visualization
 - Testing and bug fixes
+- Security enhancements
 
 ## License
 

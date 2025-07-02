@@ -89,14 +89,14 @@ class HomeViewModel @Inject constructor(
         }
     }
     
-    fun loadWeather(lat: Double, lon: Double, apiKey: String) {
+    fun loadWeather(lat: Double, lon: Double) {
         viewModelScope.launch {
             try {
                 _uiState.update { it.copy(isWeatherLoading = true) }
                 
                 userPreferences.temperatureUnit.collect { tempUnit ->
                     val units = if (tempUnit == com.steptracker.app.data.preferences.TemperatureUnit.FAHRENHEIT) "imperial" else "metric"
-                    weatherRepository.getCurrentWeather(lat, lon, apiKey, units)
+                    weatherRepository.getCurrentWeather(lat, lon, units)
                         .collect { weatherData ->
                             _uiState.update { it.copy(
                                 weatherData = weatherData,

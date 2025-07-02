@@ -27,6 +27,13 @@ fun HomeScreen(
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     
+    // Load weather data when component is first created
+    LaunchedEffect(Unit) {
+        // For demo purposes, using a default location (London)
+        // In a real app, you'd get the user's actual location
+        viewModel.loadWeather(51.5074, -0.1278)
+    }
+    
     Column(
         modifier = Modifier
             .fillMaxSize()
